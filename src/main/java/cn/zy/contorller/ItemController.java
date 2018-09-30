@@ -1,5 +1,6 @@
 package cn.zy.contorller;
 
+import cn.zy.config.JdbcConfigBean;
 import cn.zy.pojo.Item;
 import cn.zy.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,12 @@ public class ItemController {
     @GetMapping("item/{id}")
     public Item getItem(@PathVariable("id") String id) {
         return itemService.getItem(id);
+    }
+
+    @Autowired
+    private JdbcConfigBean jdbcConfigBean;
+    @GetMapping(value = "test")
+    public String test(){
+        return this.jdbcConfigBean.toString();
     }
 }
